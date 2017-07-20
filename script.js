@@ -30,10 +30,7 @@
 // ON PAGE LOAD
 var globalArray = [];
 pullGlobalArrayFromLocalStorage();
-
-$(function () {
-  loadSavedIdeas();
-});
+loadSavedIdeas();
 
 function Idea() {
   this.id = '';
@@ -52,11 +49,11 @@ Idea.prototype.generateID = function() {
    ------------------- */
 
 // INPUT FIELD EVENT LISTENER
-  $(".idea-input-title").keyup(function() {
+$(".idea-input-title").keyup(function() {
   $(".idea-input-save-button").prop("disabled", !this.value);
 });
 
-  $(".idea-input-body").keyup(function() {
+$(".idea-input-body").keyup(function() {
   $(".idea-input-save-button").prop("disabled", !this.value);
 });
 
@@ -117,7 +114,7 @@ $('.search-bar-input').keyup(function (e) {
   e.preventDefault();
   var currentInputField = $(this).val();
   var matchingIdeas = globalArray.filter(function(element){
-  return element.title.includes(currentInputField) || element.body.includes(currentInputField);
+    return element.title.includes(currentInputField) || element.body.includes(currentInputField);
   })
 
   $('.idea-box').remove();
@@ -155,11 +152,10 @@ $('.bottom').on('click','.idea-box-upvote-button', function() {
   })
 
   if (parsedGlobalArray[index].quality === 'swill') {
-    parsedGlobalArray[index].quality = 'plausible';
-    $(this).closest('div').find('span').text('plausible');
-    globalArray = parsedGlobalArray;
-    pushGlobalArrayToLocalStorage();
-
+      parsedGlobalArray[index].quality = 'plausible';
+      $(this).closest('div').find('span').text('plausible');
+      globalArray = parsedGlobalArray;
+      pushGlobalArrayToLocalStorage();
   } else if (parsedGlobalArray[index].quality === 'plausible'){
       parsedGlobalArray[index].quality = 'genius';
       $(this).closest('div').find('span').text('genius');
@@ -228,7 +224,7 @@ $('.bottom').on('click', '.idea-box-text', function() {
 
 // FUNCTIONS
 
-function createBox (idea) {
+function createBox(idea) {
 $('.bottom').prepend(`
   <article class="idea-box">
     <p class="idea-box-id-hidden">${idea.id}</p>
@@ -253,15 +249,14 @@ function pushGlobalArrayToLocalStorage() {
 
 function pullGlobalArrayFromLocalStorage() {
   var globalArrayPulledFromLocalStorage = localStorage.getItem('globalArray');
-  if(globalArrayPulledFromLocalStorage != null){
+  if(globalArrayPulledFromLocalStorage !== null){
     var parsedGlobalArray = JSON.parse(globalArrayPulledFromLocalStorage);
     globalArray = parsedGlobalArray;
   }
 }
 
-function loadSavedIdeas (){
+function loadSavedIdeas(){
   if (localStorage.getItem('globalArray') !== null){
-
     var globalArrayPulledFromLocalStorage = localStorage.getItem('globalArray');
     var parsedGlobalArray = JSON.parse(globalArrayPulledFromLocalStorage);
 
