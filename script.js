@@ -112,6 +112,33 @@ $('.idea-input-save-button').on('click', function(e) {
   $('.idea-input-title').focus();
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // SEARCH BAR EVENT LISTENER
 $('.search-bar-input').keyup(function (e) {
   e.preventDefault();
@@ -125,6 +152,17 @@ $('.search-bar-input').keyup(function (e) {
     createBox(matchingIdeas[i]);
   }
 })
+
+
+
+
+
+
+
+
+
+
+
 
 // DELETE BUTTON EVENT LISTENER
 $('.bottom').on('click', '.idea-box-delete-button', function(){
